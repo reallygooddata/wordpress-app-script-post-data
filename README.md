@@ -1,6 +1,6 @@
 # Fetch Posts Google Sheets Script
 
-This script is designed to fetch post data from a WordPress site and populate a Google Sheet with this information, including publish dates, links, titles, and author names. It utilizes Google Apps Script associated with a Google Sheets document to automate data retrieval and processing.
+This script is designed to fetch post data from a WordPress site and populate a Google Sheet with this information, including publish dates, links, titles, and author names. It utilizes Google Apps Script associated with a Google Sheets document to automate data retrieval and processing. Notably, the author name retrieval utilizes the Yoast SEO plugin.
 
 ## How to Use
 
@@ -21,6 +21,7 @@ To use this script in your Google Sheets, follow these simple steps:
 
 1. Modify the `url` variable inside the `fetchPosts` function to point to the WordPress site API you wish to fetch posts from. The `url` is currently set as `"https://changeme.com/wp-json/wp/v2/posts?_fields=date,link,title,yoast_head_json&per_page=100&page=" + page`; replace `"https://changeme.com"` with your WordPress site's base URL.
 2. If necessary, adjust the `dataStartRow`, `numColumns`, or any other variable to match your specific requirements.
+3. **Adjusting Fields**: To add or remove fields fetched by the script, update the `_fields` parameter in the API URL within the `fetchPosts` function. For example, to add an `excerpt` field, append `,excerpt` to the list of fields in the URL.
 
 ### Running the Script
 
@@ -31,8 +32,8 @@ To use this script in your Google Sheets, follow these simple steps:
 ## Important Notes
 
 - This script clears content starting from row 2 every time it runs to ensure data is fresh. Adjust this behavior in the script if necessary.
+- The author names are fetched using the Yoast SEO plugin, which should be active and properly configured on your WordPress site. If your authorship data is stored differently, you might need to adjust the part of the script that handles author name retrieval.
 - Ensure the Google Sheet and the script have the necessary access permissions set to let the script run successfully.
 - If you encounter any issues with data not appearing correctly, double-check the API URL and the structure of the data being returned by the WordPress site.
 
-By following these instructions, you should be able to successfully automate the fetching and recording of WordPress post data into your Google Sheets document.
-
+By following these instructions and adjustments, you should be able to successfully customize the fetching and recording of WordPress post data into your Google Sheets document to meet your specific requirements.
